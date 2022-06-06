@@ -1,0 +1,11 @@
+#intro{
+    color:white;
+    background-color: green;
+}
+.first{
+    font-size: 200%;
+}
+#intro2 .first2 em{
+    color:pink;
+    background-color: green;
+}

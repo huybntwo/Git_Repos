@@ -1,0 +1,37 @@
+/* text-align */
+p.left{
+    text-align: left;
+}
+p.right{
+    text-align: right;
+}
+#exam{
+    color: blue;
+}
+/* vertical-align */
+td.top{
+    vertical-align: top;
+}
+td.middle{
+    vertical-align: middle;
+}
+td.bottom{
+    vertical-align: bottom;
+}
+/*  */
+span.baseline{
+    vertical-align: baseline;
+    color:red;
+}
+span.sub{
+    vertical-align: sub;
+    color:red;
+}
+span.super{
+    vertical-align: super;
+    color:red;
+}
+span.pixel{
+    vertical-align: -10px;
+    color:red;
+}
