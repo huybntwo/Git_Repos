@@ -1,0 +1,10 @@
+.examp1{
+    color:black;
+}
+.examp1:hover{
+    color:red;
+    text-decoration: none;
+}
+.examp1:visited{
+    color:violet;
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <!-- space of letters -->
+        <style>
+            p.normal{
+                letter-spacing: normal;
+            }
+            p.length{
+                letter-spacing: 5px;
+            }
+            p.inherit{
+                letter-spacing: inherit;
+            }
+        </style>
+        <p class="normal">This paragraph has no additional letter-spacing applied</p>
+        <p class="length">This paragraph is letter-spacing at 5px</p>
+        <!-- space of words -->
+        <style>
+            p.wordnormal{
+                word-spacing: normal;
+            }
+            p.wordlength{
+                word-spacing: 5px;
+            }
+            p.wordinherit{
+                word-spacing: inherit;
+            }
+        </style>
+        <p class="wordnormal">This paragraph has no additional word-spacing applied</p>
+        <p class="wordlength">This paragraph is word-spacing at 5px</p>
+        <!-- white-space -->
+        <style>
+            p.nowrap {
+                white-space: nowrap;
+            }
+            p.pre {
+                white-space: pre;
+            }
+            p.preline {
+                white-space: pre-line;
+            }
+            p.prewrap {
+                white-space: pre-wrap;
+            }
+        </style>
+        
+        <div class="card p-1" style="width: 200px">
+            <p class="nowrap">
+                Ví dụ white-space sử dụng           để điều khiển
+                khoảng trắng trong văn bản
+            </p>
+        
+            <p class="pre">
+                Ví dụ white-space sử dụng           để điều khiển
+                khoảng trắng trong văn bản
+            </p>
+            <p class="preline">
+                Ví dụ white-space sử dụng           để điều khiển
+                khoảng trắng trong văn bản
+            </p>
+            <p class="prewrap">
+                Ví dụ white-space sử dụng           để điều khiển
+                khoảng trắng trong văn bản
+            </p>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Trang HTML5</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+
+<header>
+    <h1>Section 1</h1>
+    <nav>
+        <ul>
+            <li>Menu</li>
+            <li><a href="#">Trang chủ</a></li>
+            <li><a href="#">Dịch vụ</a></li>
+            <li><a href="#">Giới thiệu</a></li>
+            <li><a href="#">LogIn</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+</script>
+
+<div id="box"
+     ondrop="drop(event)"
+     ondragover="allowDrop(event)"
+     style="border:1px solid black; width:200px; height:200px">
+</div>
+
+<hr/>
+
+<div draggable="true" ondragstart="drag(event)" id="divdrag">
+    <img  src="https://www.google.com.vn/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" draggable="false"/>
+    <p>Logo Google</p>
+</div>
+
+<div id="toado"></div>
+<script>
+
+
+    function errorgeo(err) {
+        var errcode = err.code;
+        var message = err.message;
+        var boxhtml = document.getElementById("toado");
+        boxhtml.innerHTML = "Mã lỗi: " + errcode + "<br>" + "Nội dung lỗi: " + message;
+
+    }
+    function showcoor(pos) {
+        var coord = pos.coords;
+        var long = coord.longitude;
+        var lat  = coord.latitude;
+        var boxhtml = document.getElementById("toado");
+        boxhtml.innerHTML = "Kinh độ: " + long + "<br>" + "Vĩ độ: " + lat;
+
+    }
+
+    //TEST
+    navigator.geolocation.getCurrentPosition(showcoor, errorgeo);
+</script>
+<article>
+
+    <section>
+        <progress min="0" max="100" value="35"></progress><br>
+        <!-- Way 1 -->
+        <audio src="audio.mp3" controls>
+            Trình duyệt không hỗ trợ phát âm thanh
+         </audio>
+         <!-- Way 2 -->
+         <audio controls>
+            <source src="audio.mp3" type="audio/mpeg">
+            <source src="audio.ogg" type="audio/ogg">
+            Trình duyệt không hỗ trợ phát âm thanh
+         </audio>
+         <!-- video -->
+         <video controls>
+            <source src="video.mp4" type="video/mp4">
+            <source src="video.ogg" type="video/ogg">
+            Trình duyệt của bạn không hỗ trợ video
+         </video>
+        <header>
+            <h2>Article title</h2>
+            <p>Posted on <time datetime="2009-09-04T16:31:24+02:00">September 4th 2009</time> by <a href="#">Writer</a> - <a href="#comments">6 comments</a></p>
+        </header>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+    </section>
+
+    <section>
+        <header>
+            <h2>Article title</h2>
+            <p>Posted on <time datetime="2009-09-04T16:31:24+02:00">September 4th 2009</time> by <a href="#">Writer</a> - <a href="#comments">6 comments</a></p>
+        </header>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+        <aside>
+            <p> Quà tặng được chuyển đến khách hàng trong khoảng 24h </p>
+         </aside>
+    </section>
+
+</article>
+
+<aside>
+    <h2>About section</h2>
+    <p>Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+</aside>
+
+<footer>
+    <p>Copyright 2017</p>
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+       <table border="2" style="border-collapse: collapse">
+        <tr>
+            <td>red</td>
+            <td>green</td>
+        </tr>
+        <tr>
+            <td>blue</td>
+            <td>yellow</td>
+        </tr>
+    </table> 
+    <br>
+    <!--  -->
+        <style>
+            table.collapsetb{
+                border-collapse: separate;
+                border-spacing: 40px 20px;
+            }
+        </style>
+        <table border="2px" class="collapsetb">
+            <tr>
+                <td>red</td>
+                <td>green</td>
+            </tr>
+            <tr>
+                <td>blue</td>
+                <td>yellow</td>
+            </tr>
+        </table>
+        <!--  -->
+        <table border="1">
+            <caption style="caption-side:top";>MOT SO CHU DE</caption>
+            <tr>
+                <th>Tên chủ đề</th>
+                <th>Số bài viết</th>
+                <th>Số câu hỏi</th>
+            </tr>
+        
+            <tr>
+                <td>HTML</td>
+                <td>38</td>
+                <td>119</td>
+            </tr>
+            <tr>
+                <td>CSS</td>
+                <td>70</td>
+                <td>174</td>
+            </tr>
+        </table>
+        <!--  -->
+        <style>
+            table.tablehideempty{
+                border-collapse: separate;
+                empty-cells: show;
+            }
+        </style>
+        <table border="2px" class="tablehideempty">
+            <tr>
+                <th>Name</th>
+                <th>Sex</th>
+            </tr>
+            <tr>
+                <td>Huybn2</td>
+                <td>Male</td>
+            </tr>
+            <tr>
+                <td>Mienhv1</td>
+                <td></td>
+            </tr>
+        </table>
+        <!--  -->
+        <style>
+            table.auto, table.fixed {
+                border-collapse: separate;
+                width: 100%;
+                border: 1px solid gray;
+            }
+            table.auto td, table.fixed  td {
+                border: 1px solid red;
+            }
+            table.auto {
+                table-layout: auto;
+            }
+            table.fixed {
+                table-layout: fixed;
+            }
+        </style>
+        <p>Table-layout is set to <strong>auto</strong></p>
+        <table class="auto">
+            <tr>
+                <td width=“10%">500.000.000.000.000</td>
+                <td width="90%">20.000</td>
+            </tr>
+        </table>
+        
+        <p>Table-layout is set to <strong>fixed</strong></p>
+        <table class="fixed">
+            <tr>
+                <td width="10%">500.000.000.000.000</td>
+                <td width="90%">20.000</td>
+            </tr>
+        </table>
+    </body>
+</html>
