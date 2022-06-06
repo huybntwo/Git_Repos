@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        p.position_static{
+            position:static;
+            top:30px;
+            right:5px;
+            color:red;
+        }
+        p.position_fixed{
+            position:fixed;
+            top:30px;
+            right:5px;
+            color:red;
+        }
+    </style>
+    <div class="card">
+        <p>This paragraph has no position attribute</p>
+        <p class="position_static">This paragraph has static position attribute</p>
+        <p class="position_fixed">This paragraph has fixed position attribute</p>
+    </div>
+</body>
+</html>
