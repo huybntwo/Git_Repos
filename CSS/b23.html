@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .floating{
+            float:left;
+        }
+        .clearing{
+            clear:both;
+        }
+    </style>
+    This paragraph is above the div element and is not affected by the right float property.
+    <div class="floating">
+        <img src="https://xuanthulab.net/public/img/logo.png"
+        style="width: 200px; height: 150px"/>
+    </div>
+    This paragraph comes after the div element and is affected by the right float property.
+    <br>
+    <br class="clearing">
+    This paragraph is out of the floating group and is not affected by the float right property.
+    <br/> <br/> 
+</body>
+</html>
