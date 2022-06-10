@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .exam1::first-line{
+            color:red;
+            font-weight: bold;
+        }
+    </style>
+    <p class="exam1">
+        The fisrt line.<br>The second line.<br>The third line.
+    </p>
+    <!--  -->
+    <style>
+        p::selection {
+            background: #b92c28;
+            color: #fff;
+        }
+    </style>
+    <p>Hello World!!!</p>
+    <!--  -->
+    <style>
+        .exam2::before {
+            /* content: url("https://cdn4.iconfinder.com/data/icons/famous-character-vol-2-flat/48/Avatar_Famous_Characters-20-128.png"); */
+            content: "Add before element";
+            background: blue;
+            color:yellow;
+        }
+        .exam2::after {
+            content: 'Add after element';
+            background: green;
+            color: whitesmoke;
+        }
+    
+    </style>
+    
+    <div class="exam2">
+        Inside element
+    </div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        div.exam1{
+            height:200px;
+            width:200px;
+            background:url("https://xuanthulab.net/public/img/logo.png") no-repeat 50% 50%;
+            /* background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit; */
+            /* Note: If one of the properties in the shorthand declaration is the bg-size property,
+             you must use a / (slash) to separate it from the bg-position property, 
+             e.g. background:url(smiley.gif) 10px 20px/50px 50px; will result in a background image, 
+             positioned 10 pixels from the left, 20 pixels from the top, and the size of the image will be 50 pixels wide and 50 pixels high. */
+            /* background-size: 120px; */
+            /* background-size:cover; */
+            background-size:contain;
+            background-color:red;
+        }
+    </style>
+    <div class="exam1"></div>
+    <!-- background-clip -->
+    <style>
+        #default{
+            border:2px dotted black;
+            padding:20px;
+            background:lightblue;
+            background-clip: border-box;
+        }
+        #padding{
+            border:2px dotted black;
+            padding:20px;
+            background:lightblue;
+            background-clip:padding-box;
+        }
+        #contain{
+            border:2px dotted black;
+            padding:20px;
+            background:lightblue;
+            background-clip:content-box;
+        }
+    </style>
+    <div id="default">background-clip:border-box(default)</div>
+    <div id="padding">background-clip:padding-box</div>
+    <div id="contain">background-clip:contain-box</div>
+</body>
+</html>

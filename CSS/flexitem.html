@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Register the parent element -->
+    <style>
+        div.containerflex{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: stretch;
+            align-content: stretch;
+
+            padding:5px;
+            background: yellow;
+            min-width: 320px;
+            height:480px;
+            margin:auto;
+
+        }
+        div.flexitem{
+            padding:20px;
+            font-weight: bold;
+            margin:1px;
+            background:lightblue
+        }
+    </style>
+    <div class="containerflex" title="container" data-placement="top" data-toggle="tooltip">
+        <div class="flexitem">1</div>
+        <div class="flexitem">2</div>
+        <div class="flexitem">3</div>
+        <div class="flexitem">4</div>
+        <div class="flexitem">5</div>
+    </div>
+    <!-- Register the child element -->
+    <style>
+        div.parent-element{
+            display:flex;
+            background-color:green;
+            padding:3px;
+        }
+        div.child-element{
+            background-color:red;
+            margin:2px;
+            color:white;
+            min-height:40px;
+            justify-content: center;
+            display:flex;
+            align-items:center;
+        }
+    </style>
+    <div class="parent-element">
+        <div class="child-element" style="flex-grow:1;">1</div>
+        <div class="child-element" style="flex-grow:2;">2</div>
+        <div class="child-element" style="flex-grow:3;">3</div>
+    </div>
+</body>
+</html>
