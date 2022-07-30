@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <button>Add New Customer</button><br><br>
+    <button>Display Information Customer</button><br><br>
+    <button>Edit Information Customer</button><br><br>
+    <button>Delete Customer</button><br><br>
+    <button>Exit</button><br><br> -->
+    <p id="show"></p><br><br>
+    <script>
+        var customerList = [
+            ['Nguyen Hung', '197320182'],
+            ['To Xuan Lich', '235789412'],
+            ['Luu Nghiem', '175290538'],
+            ['Tran Bach', '185206396'],
+            ['Vuong Ly', '289506732'],
+            ['Le Viet', '088634172'],
+            ['Hoang Kim', '973628163']
+        ];
+
+        displayMainMenu();
+        function addNewCustomer(){
+            let num = parseInt(prompt('How many customer to be added?'));
+            for(let i=0;i<num;++i){
+                let addCus = [];
+                addCus[0] = prompt("Enter the name of customer "+ (i + 1) + ":");
+                addCus[1] = prompt("Enter the ID of customer " + (i + 1) + ":");
+                customerList.push(addCus);
+            }
+            displayCustomer();
+        }
+        var cusList;
+        function displayCustomerOnly(){
+            cusList = "List of Customer" + "\n";
+            for(let i=0;i<customerList.length;++i){
+                cusList += (i+1) + ".";
+                for(let j=0;j<customerList[i].length;++j){
+                    if(j == customerList[i].length - 1){
+                        cusList += customerList[i][j];
+                        continue;
+                    }
+                    cusList += customerList[i][j] + " -- ";
+                }
+                cusList += "\n";  
+            }
+        }
+        function displayCustomer(){
+            cusList = "List of Customer" + "\n";
+            for(let i=0;i<customerList.length;++i){
+                cusList += (i+1) + ".";
+                for(let j=0;j<customerList[i].length;++j){
+                    if(j == customerList[i].length - 1){
+                        cusList += customerList[i][j];
+                        continue;
+                    }
+                    cusList += customerList[i][j] + " -- ";
+                }
+                cusList += "\n";  
+            }
+            //document.getElementById('show').innerHTML = cusList;
+            //
+            let opt = parseInt(prompt( cusList + "\n\nPlease enter which customer you want to show(Press 0 to comback MainMenu): "));
+            if(opt == 0){
+                displayMainMenu();
+            }else{
+                diplayInformationCustomer(opt - 1);
+            }
+            
+
+        }
+
+        function diplayInformationCustomer(index){
+            let choice = prompt("Name: " + customerList[index][0] + "\n"
+            + "ID: " + customerList[index][1] + "\nPress 0 to comeback displayCustomer\nPress 1 to comeback editCustomer");
+            if(choice == "0"){
+                displayCustomer();
+            } else if(choice == "1"){
+                return 1;
+            } else{
+                return;
+            }
+        }
+        function editInformationCustomer(){
+            displayCustomerOnly();
+            let choiceEdit = -1;
+            do{
+                let optionEdit = parseInt(prompt( cusList + "\n\nPlease enter which customer you want to edit: "));
+                let ansEdit = -1;
+                do{
+                    choiceEdit = parseInt(prompt("Name: " + customerList[optionEdit-1][0] + "\n"
+                    + "ID: " + customerList[optionEdit-1][1] + "\nPress 1 to edit name\nPress 2 to edit ID\nPress 0 to comeback select customer: "));
+
+                    let newUser = [];
+                    newUser = customerList[optionEdit-1];
+                    if(choiceEdit == 1){
+                        newUser[0] = prompt("Enter new name: ");
+                    } else if( choiceEdit == 2){
+                        newUser[1] = prompt("Enter new ID: ");
+                    }
+                    
+                    customerList[optionEdit-1] = newUser;
+                    if(choiceEdit == 0){
+                        break;
+                    }
+                    ansEdit = diplayInformationCustomer(optionEdit-1);
+                }while(ansEdit == 1);
+
+                
+
+                
+            }while(choiceEdit == 0);
+
+        }
+        function deleteCustomer(){
+            displayCustomerOnly();
+            let choiceDel = -1;
+            while(true){
+                choiceDel = parseInt(prompt(cusList + "\nPlease enter which customer you want to delete(Press 0 to comeback MainMenu): "));
+                if(choiceDel > 0){
+                    let ansDel = parseInt(prompt("Do you really want to delete " + customerList[choiceDel - 1] + "?" + "\nPress 1.OK, Press 2.Cancel"));
+                    if(ansDel == 1){
+                        customerList.splice(choiceDel-1,1);
+                        displayCustomerOnly();
+                    } else if(ansDel == 2) {
+                        break;
+                    }
+                }
+                if(choiceDel == 0){
+                    break;
+                }
+                
+            }
+            displayMainMenu();
+        }
+
+        function displayMainMenu(){
+            let option = prompt("MAIN MENU\n" + 
+            "1.Add New Customer\n" + 
+            "2.Display Information Customer\n" +
+            "3.Edit Information Customer\n" +
+            "4.Delete Customer\n" +
+            "5.Exit\n");
+            switch(option) {
+                case "1":
+                    addNewCustomer();
+                    break;
+                case "2":
+                    displayCustomer();
+                    break;
+                case "3":
+                    editInformationCustomer();
+                    break;
+                case "4":
+                    deleteCustomer();
+                    break;
+                case "5":
+                default:
+                    alert("Yout just exit the main menu");
+
+            }
+        }
+    </script>
+</body>
+</html>

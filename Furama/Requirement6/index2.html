@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Management</title>
+</head>
+<body>
+<style>
+    table {
+        border: 1px solid blue;
+        border-collapse: collapse;
+    }
+    td, th {
+        width: 180px;
+        height: 30px;
+        border: 1px solid darkgray;
+        text-align: center;
+        font-size: 12px;
+        cursor: pointer;
+    }
+    td:hover{
+        background-color: lightgrey;
+    }
+</style>
+
+<div>
+    <h2>CUSTOMER MANAGEMENT FIELD</h2>
+    <label>I. Customers</label><br>
+    <input type="button" onclick="addNewCustomer()" value="ADD NEW CUSTOMER">
+    <input type="button" onclick="showTotalAmount()" value="SHOW TOTAL AMOUNT">
+    <br><br>
+    <label>II. Employees</label><br>
+    <input type="button" onclick="addNewEmployee()" value="ADD NEW EMPLOYEE">
+    <input type="button" onclick="displayEmployees()" value="DISPLAY EMPLOYEES">
+    <input type="button" onclick="deleteEmployee()" value="DELETE EMPLOYEE">
+    <input type="button" onclick="editEmployee()" value="EDIT EMPLOYEE INFORMATION">
+    <p id="tableCustomer"></p>
+</div>
+
+<script>
+    //---Create class for CUSTOMER
+    class Customer {
+        constructor (name, birthday, email, address, customerType,
+        serviceType, roomClass, discount, rentDays, peopleIncluded) {
+            this.name = name;
+            this.birthday = birthday;
+            this.email = email;
+            this.address = address;
+            this.customerType = customerType;
+            this.serviceType = serviceType;
+            this.roomClass = roomClass;
+            this.discount = discount;
+            this.rentDays = rentDays;
+            this.peopleIncluded = peopleIncluded;
+        }
+        setName(name){
+            this.name = name;
+        }
+        getName(){
+            return this.name;
+        }
+        setBirthday(birthday){
+            this.birthday = birthday;
+        }
+        getBirthday(){
+            return this.birthday;
+        }
+        setEmail(email){
+            this.email = email;
+        }
+        getEmail(){
+            return this.email;
+        }
+        setAddress(address){
+            this.address = address;
+        }
+        getAddress(){
+            return this.address;
+        }
+        setCustomerType(customerType){
+            this.customerType = customerType;
+        }
+        getCustomerType(){
+            return this.customerType;
+        }
+        setServiceType(serviceType){
+            this.serviceType = serviceType;
+        }
+        getServiceType(){
+            return this.serviceType;
+        }
+        setRoomClass(roomClass){
+            this.roomClass = roomClass;
+        }
+        getRoomClass(){
+            return this.roomClass;
+        }
+        setDiscount(discount){
+            this.discount = discount;
+        }
+        getDiscount(){
+            return this.discount;
+        }
+        setRentDays(rentDays){
+            this.rentDays = rentDays;
+        }
+        getRentDays(){
+            return this.rentDays;
+        }
+        setPeopleIncluded(peopleIncluded){
+            this.peopleIncluded = peopleIncluded;
+        }
+        getPeopleIncluded(){
+            return this.peopleIncluded;
+        }
+        setUnitPrice(){
+            switch (this.serviceType){
+                case 'Villa':
+                    this.unitPrice = 500;
+                    break;
+                case 'House':
+                    this.unitPrice = 300;
+                    break;
+                case 'Room':
+                    this.unitPrice = 100;
+                    break;
+                default:
+                    this.unitPrice = 0;
+                    break;
+            }
+        }
+        getUnitPrice(){
+            return this.unitPrice;
+        }
+        setTotalAmount(){
+            this.totalAmount = this.getUnitPrice() * this.getRentDays() * (1 - this.getDiscount()/100);
+        }
+        getTotalAmount(){
+            return this.totalAmount;
+        }
+    }
+    //---End of class Customer{}
+
+    let customersList = [];
+    let customer1 = new Customer('Chuong Hoang', '20/04/1988','chuong@hoang.com', 'Da Nang', 'Platinum',
+    'House', 'Business', 15, 10, 3);
+    let customer2 = new Customer('Hoang Kim', '20/04/1988','chuong@hoang.com', 'Hue', 'Diamond',
+        'Room', 'Vip', 12, 6, 4);
+    let customer3 = new Customer('Van Chuong', '20/04/1988','chuong@hoang.com', 'Quang Tri', 'Gold',
+        'Villa', 'Normal', 10, 8, 2);
+    customer1.setUnitPrice();
+    customer1.setTotalAmount();
+    customersList.push(customer1);
+    customer2.setUnitPrice();
+    customer2.setTotalAmount();
+    customersList.push(customer2);
+    customer3.setUnitPrice();
+    customer3.setTotalAmount();
+    customersList.push(customer3);
+    displayCustomers();
+    function displayCustomers(){
+        let string = '<table>\n' +
+        '<caption><b>CUSTOMER LIST</b><br><br></caption>\n';
+        string += '<tr>\n' +
+            '        <th id="stt">No.</th>\n' +
+            '        <th id="name">Full name</th>\n' +
+            '        <th id="birthday">Birthday</th>\n' +
+            '        <th id="email">Email</th>\n' +
+            '        <th id="address">Address</th>\n' +
+            '        <th id="customerType">Customer Type</th>\n' +
+            '        <th id="serviceType">Service Type</th>\n' +
+            '        <th id="roomClass">Room Class</th>\n' +
+            '        <th id="discount">Discount (%)</th>\n' +
+            '        <th id="rentDays">Rent days</th>\n' +
+            '        <th id="peopleIncluded">People Included</th>\n' +
+            '        <th id="unitPrice">Unit Price</th>\n' +
+            '        <th id="totalAmount">Total Amount</th>\n' +
+            '        <th id="delete">Delete Info</th>\n' +
+            '    </tr>';
+        for(let i = 0; i < customersList.length; i++){
+           string += '<tr>';
+           //-- go rows
+           string += '<td>' + (i+1) + '</td>'; //1
+           string += '<td ondblclick="editName('+i+')">' + customersList[i].getName() + '</td>'; //2
+           string += '<td ondblclick="editBirthday('+i+')">' + customersList[i].getBirthday() + '</td>'; //3
+           string += '<td ondblclick="editEmail('+i+')">' + customersList[i].getEmail() + '</td>'; //4
+           string += '<td ondblclick="editAddress('+i+')">' + customersList[i].getAddress() + '</td>'; //5
+           string += '<td ondblclick="editCustomerType('+i+')">' + customersList[i].getCustomerType() + '</td>'; //6
+           string += '<td ondblclick="editServiceType('+i+')">' + customersList[i].getServiceType() + '</td>'; //7
+           string += '<td ondblclick="editRoomClass('+i+')">' + customersList[i].getRoomClass() + '</td>'; //8
+           string += '<td ondblclick="editDiscount('+i+')">' + customersList[i].getDiscount() + '</td>'; //9
+           string += '<td ondblclick="editRentDays('+i+')">' + customersList[i].getRentDays() + '</td>'; //10
+           string += '<td ondblclick="editPeopleIncluded('+i+')">' + customersList[i].getPeopleIncluded() + '</td>'; //11
+           string += '<td>' + customersList[i].getUnitPrice() + '</td>';//12
+           string += '<td style="font-weight: bold">' + customersList[i].getTotalAmount() + '</td>'; //13
+           string += '<td style="color: red;" onclick="deleteCustomer(' + i + ')">DELETE</td>'; //14
+           //-- end rows
+           string += '</tr>';
+        }
+        string += '</table>';
+        document.getElementById('tableCustomer').innerHTML = string;
+    }
+
+    function addNewCustomer(){
+        let number = parseInt(prompt('How many customers to be added?'));
+        if(number > 0){
+            for(let i = 0; i < number; i++){
+
+                //standardize name---------------------------------------
+                let name = prompt('Input name of customer ' + (i+1) + ':');
+                name = name.trim().toLowerCase();
+                let tempName = '';
+                for (let i = 0; i < name.length; i++){
+                    if (name.charAt(i) === ' ' && name.charAt(i+1) === ' '){
+                        tempName += '';
+                    } else {
+                        if(i === 0 || (name.charAt(i-1) === ' ' && name.charAt(i) !== ' ')){
+                            tempName += name.charAt(i).toUpperCase();
+                        } else {
+                            tempName += name.charAt(i);
+                        }
+                    }
+                }
+                name = tempName;
+                //alert(name);
+
+                // input birthday with regular expression-------------------------
+                let birthday;
+                let bdLength;
+                do {
+                    birthday = prompt("Birthday (dd/mm/yyyy)?");
+                    bdLength = birthday.length;
+                    let dd = parseInt(birthday.substr(0, 2));
+                    let mm = parseInt(birthday.substr(3, 2));
+                    let yyyy = parseInt(birthday.substr(6, 4));
+                    let date = new Date();
+                    let currentYear = date.getFullYear();
+                    if (bdLength > 10){
+                        alert('Birthday not valid!');
+                    } else if(birthday.charAt(2) !== '/' || birthday.charAt(5) !== '/') {
+                        bdLength++;
+                        alert('Need 2 characters "/" at position 2 and 5 of the text');
+                    } else if(isNaN(dd) || dd < 0 || dd > 31) {
+                        bdLength++;
+                        alert('Day not valid!');
+                    } else if(isNaN(mm) || mm < 0 || mm > 12){
+                        bdLength++;
+                        alert('Month not valid!');
+                    } else if(isNaN(yyyy) || yyyy < 1920 || yyyy > (currentYear - 16)){
+                        bdLength++;
+                        alert('Year not valid!');
+                    }
+                } while (bdLength !== 10);
+
+                //Input email with regular expression-------------------------------
+                let email;
+                let fault = 0;
+                do {
+                    email = prompt('Email?');
+                    if (email.charAt(0) === '@' || email.charAt(0) === '.') {
+                        fault++;
+                        alert('"@" or dot cannot be at the first position');
+                        console.log('Fault 1 = ' + fault); //check
+                    } else if (email.charAt(email.length - 1) === '@' || email.charAt(email.length - 1) === '.') {
+                        fault++;
+                        alert('"@" or dot cannot be at the last position');
+                        console.log('Fault 2 = ' + fault); //check
+                    } else {
+                        let countAt = 0;
+                        let countDot = 0;
+                        for (let i = 0; i < email.length; i++) {
+                            if (email.charAt(i) === '@') {countAt++;}
+                            if (email.charAt(i) === '.') {countDot++;}
+                        }
+                        if (countAt !== 1) {
+                            fault++;
+                            alert('Email must have only one character "@"');
+                            console.log('Fault 3 = ' + fault); //check
+                        } else if (countDot < 1) {
+                            fault++;
+                            alert('Email must have at least one dot');
+                            console.log('Fault 4 = ' + fault); //check
+                        }
+
+                    }
+                } while (fault !== 0);
+
+                let address = prompt('Address?');
+
+                let customerType; //------------------------------------
+                do {
+                    customerType = prompt('Customer-Type (Diamond/Platinum/Gold/Silver/Member)?');
+                } while (!(customerType === 'Diamond' || customerType === 'Gold' ||
+                customerType === 'Platinum' || customerType === 'Silver' ||
+                customerType === 'Member'));
+
+                let serviceType; //----------------------------------------
+                do {
+                    serviceType = prompt('Service-Type (Villa/House/Room)?');
+                } while (!(serviceType === 'Villa' || serviceType === 'House' ||
+                serviceType === 'Room'));
+
+                let roomClass; //------------------------------------------
+                do {
+                    roomClass = prompt('Room-Class (Vip/Business/Normal)?');
+                } while(!(roomClass === 'Vip' || roomClass === 'Business' ||
+                    roomClass === 'Normal'));
+
+                let discount; //-------------------------------------------
+                do {
+                    discount = parseInt(prompt('Discount (%)?'));
+                } while (isNaN(discount) || discount < 0);
+
+                let rentDays; //------------------------------------------
+                do {
+                    rentDays = parseInt(prompt('Rent Days?'));
+                } while (isNaN(rentDays) || rentDays <= 0);
+
+                let peopleIncluded; //------------------------------------
+                do {
+                    peopleIncluded = parseInt(prompt('How many people included?'));
+                } while (isNaN(peopleIncluded) || peopleIncluded < 0);
+
+                //-- create new object of customer
+                let newCustomer = new Customer(name, birthday, email, address, customerType,
+                    serviceType, roomClass, discount, rentDays, peopleIncluded);
+                newCustomer.setUnitPrice();
+                newCustomer.setTotalAmount();
+                customersList.push(newCustomer);
+                displayCustomers();
+            }
+        } else {
+            alert('No new customer added!');
+        }
+    }
+
+    // delete a customer information
+    function deleteCustomer(i){
+        let choose = confirm('You really want to delete customer named: ' + customersList[i].getName() + '?');
+        if (choose) {
+            customersList.splice(i, 1);
+        } else {
+           alert('No customer deleted!');
+        }
+        displayCustomers();
+    }
+
+    // editing functions for each field
+    function editName(i){
+        customersList[i].setName(prompt('change name of ' + customersList[i].getName()));
+        displayCustomers();
+    }
+    function editEmail(i){
+        customersList[i].setEmail(prompt('change email of ' + customersList[i].getName()));
+        displayCustomers();
+    }
+    function editBirthday(i){
+        customersList[i].setBirthday(prompt('change birthday of ' + customersList[i].getName()));
+        //customersList[i].setTotalAmount();
+        displayCustomers();
+    }
+    function editAddress(i){
+        customersList[i].setAddress(prompt('change address of ' + customersList[i].getName()));
+        //customersList[i].setTotalAmount();
+        displayCustomers();
+    }
+    function editCustomerType(i){
+        customersList[i].setCustomerType(prompt('change customer-type of ' + customersList[i].getName()));
+        //customersList[i].setTotalAmount();
+        displayCustomers();
+    }
+    function editServiceType(i){
+        let serviceType = prompt('change service-type of ' + customersList[i].getName());
+        customersList[i].setServiceType(serviceType);
+        customersList[i].setUnitPrice();
+        customersList[i].setTotalAmount();
+        displayCustomers();
+    }
+    function editRoomClass(i){
+        customersList[i].setRoomClass(prompt('change room-class of ' + customersList[i].getName()));
+        //customersList[i].setTotalAmount();
+        displayCustomers();
+    }
+    function editDiscount(i){
+        customersList[i].setDiscount(parseInt(prompt('change discount of ' + customersList[i].getName())));
+        customersList[i].setTotalAmount();
+        displayCustomers();
+    }
+    function editRentDays(i){
+        customersList[i].setRentDays(parseInt(prompt('change rent-days of ' + customersList[i].getName())));
+        customersList[i].setTotalAmount();
+        displayCustomers();
+    }
+    function editPeopleIncluded(i){
+        customersList[i].setPeopleIncluded(parseInt(prompt('People included number of ' + customersList[i].getName())));
+        // customersList[i].setTotalAmount();
+        displayCustomers();
+    }
+
+    // Show list of customers with only NAMES and TOTAL AMOUNT
+    function showTotalAmount(){
+        let amountString = '';
+        for(let i = 0; i < customersList.length; i++){
+            amountString += (i+1) + '. ' + customersList[i].getName() + ': ' + customersList[i].getTotalAmount() + '\n';
+        }
+        alert('TOTAL AMOUNT' + '\n' + amountString);
+    }
+
+    //--CLASS FOR EMPLOYEES
+    class Employees {
+        constructor(name, id, birthday, email, address, position, basicSalary){
+            this.name = name;
+            this.id = id;
+            this.birthday = birthday;
+            this.email = email;
+            this.address = address;
+            this.position = position;
+            this.basicSalary = basicSalary;
+        }
+        setName(name){
+            this.name = name;
+        }
+        getName(){
+            return this.name;
+        }
+        setId(id){
+            this.id = id;
+        }
+        getId(){
+            return this.id;
+        }
+        setBirthday(birthday){
+            this.birthday = birthday;
+        }
+        getBirthday(){
+            return this.birthday;
+        }
+        setEmail(email){
+            this.email = email;
+        }
+        getEmail(){
+            return this.email;
+        }
+        setAddress(address){
+            this.address = address;
+        }
+        getAddress(){
+            return this.address;
+        }
+        setPosition(position){
+            this.position = position;
+        }
+        getPosition(){
+            return this.position;
+        }
+        setBasicSalary(basicSalary){
+            this.basicSalary = basicSalary;
+        }
+        getBasicSalary(){
+            return this.basicSalary;
+        }
+        //Add method of allowance for employees
+        setAllowance(){
+            switch (this.getPosition()){
+                case 'Manager':
+                    this.allowance = 500;
+                    break;
+                case 'Sale':
+                    this.allowance = 300;
+                    break;
+                case 'Marketing':
+                    this.allowance = 200;
+                    break;
+                default:
+                    this.allowance = 0;
+                    break;
+            }
+        }
+        getAllowance(){
+            return this.allowance;
+        }
+        setSalary(){
+            this.salary = this.getBasicSalary() + this.getAllowance();
+        }
+        getSalary(){
+            return this.salary;
+        }
+    }
+
+    // Create array of employees and objects of employees
+    let arrEmployees = [];
+    let employee1 = new Employees('Hoang Kim', 12345678, '20/04/1988', 'hoang@kim.com', 'Quang Tri', 'Manager', 2000);
+    let employee2 = new Employees('Van Chuong', 11111111, '20/04/1988', 'van@chuong.vn', 'Sai Gon', 'Sale', 1000);
+    employee1.setAllowance();
+    employee1.setSalary();
+    employee2.setAllowance();
+    employee2.setSalary();
+    arrEmployees.push(employee1);
+    arrEmployees.push(employee2);
+
+    // Display employees
+    function displayEmployees(){
+        let employeeString = '';
+        for(let i = 0; i < arrEmployees.length; i++){
+            employeeString += (i+1) + '. ' + arrEmployees[i].getName() + ' -- '+ arrEmployees[i].getId() + ' -- ' +
+                              arrEmployees[i].getBirthday() + ' -- ' + arrEmployees[i].getEmail() + ' -- ' +
+                              arrEmployees[i].getAddress() + ' -- ' + arrEmployees[i].getPosition() + ' -- ' +
+                              arrEmployees[i].getSalary() + '\n';
+        }
+        alert('LIST OF EMPLOYEES' + '\n' + employeeString);
+    }
+
+    // Add new employee
+    function addNewEmployee(){
+        let name = prompt('Input name of new employee:');
+
+        //--Input ID with enough 8 digits [regular expression]
+        let id;
+        let check;
+        do {
+            id = parseInt(prompt('Input ID of ' + name));
+            if(isNaN(id)) {
+                check = false;
+                alert('ID must be a number with enough 8 digits');
+            } else if(id <= 10000000 || id > 99999999) {
+                check = false;
+                alert('Please input ID number with enough 8 digits');
+            } else {
+                check = true;
+            }
+        } while (!check);
+
+        //--Input birthday with format dd/mm/yyyy
+        let birthday;
+        let bdLength;
+        do {
+            birthday = prompt('Input birthday (dd/mm/yyyy) of ' + name);
+            bdLength = birthday.length;
+            let dd = parseInt(birthday.substr(0, 2));
+            let mm = parseInt(birthday.substr(3, 2));
+            let yyyy = parseInt(birthday.substr(6, 4));
+            let day = new Date();
+            let currentYear = day.getFullYear();
+            if (bdLength > 10){
+                alert('Birthday is not valid');
+            } else if(birthday.charAt(2) !== '/' || birthday.charAt(5) !== '/'){
+                bdLength++;
+                alert("Birthday needs 2 characters '/'");
+            } else if (isNaN(dd) || dd <= 0 || dd > 31) {
+                bdLength++;
+                alert('Day not valid!');
+            } else if (isNaN(mm) || mm <= 0 || mm > 12) {
+                bdLength++;
+                alert('Month not valid');
+            } else if (isNaN(yyyy) || yyyy < 1920 || yyyy > currentYear - 16) {
+                bdLength++;
+                alert('Year not valid!');
+            }
+        } while (bdLength !== 10);
+
+        //--Input email with regular expression
+        let email;
+        let fault = 0;
+        do {
+            email = prompt('Email?');
+            if (email.charAt(0) === '@' || email.charAt(0) === '.') {
+                fault++;
+                alert('"@" or dot cannot be at the first position');
+                console.log('Fault 1 = ' + fault); //check
+            } else if (email.charAt(email.length - 1) === '@' || email.charAt(email.length - 1) === '.') {
+                fault++;
+                alert('"@" or dot cannot be at the last position');
+                console.log('Fault 2 = ' + fault); //check
+            } else {
+                let countAt = 0;
+                let countDot = 0;
+                for (let i = 0; i < email.length; i++) {
+                    if (email.charAt(i) === '@') {countAt++;}
+                    if (email.charAt(i) === '.') {countDot++;}
+                }
+                if (countAt !== 1) {
+                    fault++;
+                    alert('Email must have only one character "@"');
+                    console.log('Fault 3 = ' + fault); //check
+                } else if (countDot < 1) {
+                    fault++;
+                    alert('Email must have at least one dot');
+                    console.log('Fault 4 = ' + fault); //check
+                }
+
+            }
+        } while (fault !== 0);
+
+        let address = prompt('Input address of ' + name);
+        let position = prompt('Input position of ' + name);
+        let basicSalary;
+        do {
+            basicSalary = parseInt(prompt('Input basic salary of ' + name));
+        } while (isNaN(basicSalary) || basicSalary <= 0);
+
+        let newEmployee = new Employees(name, id, birthday, email, address, position, basicSalary);
+        newEmployee.setAllowance();
+        newEmployee.setSalary();
+        arrEmployees.push(newEmployee);
+
+        displayEmployees();
+    }
+
+    // Delete employee from arrEmployees
+    function deleteEmployee(){
+        let str = '';
+        for(let i = 0; i < arrEmployees.length; i++){
+            str += (i+1) + '. ' + arrEmployees[i].getName() + '\n';
+        }
+        let delChoose = parseInt(prompt('Choose number of employee field to be deleted: ' + '\n' + str));
+        if(delChoose > 0) {
+            let confirmDel = confirm('Delete the employee: ' + arrEmployees[delChoose-1].getName() + '?');
+            if (confirmDel) {
+                arrEmployees.splice(delChoose-1, 1);
+            } else {
+                alert(arrEmployees[delChoose-1].getName() + ' not removed!');
+            }
+            displayEmployees();
+        } else {
+            alert('No employee removed!');
+        }
+    }
+
+    // Edit employee information
+    function editEmployee(){
+        let str = '';
+        for(let i = 0; i < arrEmployees.length; i++){
+            str += (i+1) + '. ' + arrEmployees[i].getName() + '\n';
+        }
+        let editChoose = prompt('Choose number of employee field to be edited: ' + '\n' + str);
+        if(editChoose > 0) {
+            arrEmployees[editChoose-1].setName(prompt('Change name of ' + arrEmployees[editChoose-1].getName()));
+            arrEmployees[editChoose-1].setId(parseInt(prompt('Change ID of ' + arrEmployees[editChoose-1].getName())));
+            arrEmployees[editChoose-1].setBirthday(prompt('Change birthday of ' + arrEmployees[editChoose-1].getName()));
+            arrEmployees[editChoose-1].setAddress(prompt('Change address of ' + arrEmployees[editChoose-1].getName()));
+            arrEmployees[editChoose-1].setEmail(prompt('Change email of ' + arrEmployees[editChoose-1].getName()));
+            arrEmployees[editChoose-1].setPosition(prompt('Change position of ' + arrEmployees[editChoose-1].getName()));
+            arrEmployees[editChoose-1].setBasicSalary(parseInt(prompt('Change basic salary of ' + arrEmployees[editChoose-1].getName())));
+            arrEmployees[editChoose-1].setAllowance();
+            arrEmployees[editChoose-1].setSalary();
+            displayEmployees();
+        } else {
+            alert('No employee information edited!');
+        }
+    }
+</script>
+</body>
+</html>

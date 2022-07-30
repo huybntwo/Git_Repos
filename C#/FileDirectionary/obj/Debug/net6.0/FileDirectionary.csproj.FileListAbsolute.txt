@@ -1,0 +1,15 @@
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\bin\Debug\net6.0\FileDirectionary.exe
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\bin\Debug\net6.0\FileDirectionary.deps.json
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\bin\Debug\net6.0\FileDirectionary.runtimeconfig.json
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\bin\Debug\net6.0\FileDirectionary.dll
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\bin\Debug\net6.0\FileDirectionary.pdb
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\obj\Debug\net6.0\FileDirectionary.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\obj\Debug\net6.0\FileDirectionary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\obj\Debug\net6.0\FileDirectionary.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\obj\Debug\net6.0\FileDirectionary.AssemblyInfo.cs
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\obj\Debug\net6.0\FileDirectionary.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\obj\Debug\net6.0\FileDirectionary.dll
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\obj\Debug\net6.0\refint\FileDirectionary.dll
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\obj\Debug\net6.0\FileDirectionary.pdb
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\obj\Debug\net6.0\FileDirectionary.genruntimeconfig.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\FileDirectionary\obj\Debug\net6.0\ref\FileDirectionary.dll

@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="btnAdd">Add Customer: </label><br>
+    <input type="button" id="btnAdd" value="Add New Customer" name="buttAdd" onclick="addNewCustomer()"><br>
+    <!--  -->
+    <label for="btnDel">Delete Customer: </label><br>
+    <input type="button" id="btnDel" value="Delete Customer" name="'buttDel" onclick="deleteCustomer()"><br>
+    <!--  -->
+    <label for="btnDis">Display Customer: </label><br>
+    <input type="button" id="btnDis" value="Display Customer" name="buttDis" onclick="displayCustomer()"><br>
+    <br><br>
+    <p id="show"></p>
+    <script>
+        let arrNameCustomers = new Array('Huybn2','Mienhv1','Longtp7','Tuanpt12','Sonlh6','Tunght9','Gianglt5','Tannd2','Kienlt6','Dunghd2');
+        //
+        displayCustomer();
+        function addNewCustomer(){
+            let num = parseInt(prompt('How many customer to be added?'));
+            for(let i=0;i<num;++i){
+                let addCus = prompt("Enter the name of customer " + (i+1) + ": ");
+                arrNameCustomers.push(addCus);
+            }
+            displayCustomer();
+        }
+        function deleteCustomer(){
+            
+            let delElem = parseInt(prompt("Which customer to be deleted?"));
+            let agree =  confirm("Do you really want to delete this customer: " + arrNameCustomers[delElem-1]);
+            if(agree){
+                arrNameCustomers.splice((delElem-1),1);
+            }
+            displayCustomer();
+        }
+        //
+        function displayCustomer(){
+            let len = arrNameCustomers.length;
+            arrNameCustomers.sort();
+            let cusList = "<b>List of Customer</b>" + "</br>";
+            for(let i=0;i<len;++i){
+                cusList += (i+1) + "."+ arrNameCustomers[i] + "</br>";  
+            }
+            document.getElementById('show').innerHTML = cusList;
+        }
+    </script>
+</body>
+</html>

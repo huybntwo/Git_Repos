@@ -1,0 +1,15 @@
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\bin\Debug\net6.0\extension_method.exe
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\bin\Debug\net6.0\extension_method.deps.json
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\bin\Debug\net6.0\extension_method.runtimeconfig.json
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\bin\Debug\net6.0\extension_method.dll
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\bin\Debug\net6.0\extension_method.pdb
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\obj\Debug\net6.0\extension_method.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\obj\Debug\net6.0\extension_method.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\obj\Debug\net6.0\extension_method.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\obj\Debug\net6.0\extension_method.AssemblyInfo.cs
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\obj\Debug\net6.0\extension_method.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\obj\Debug\net6.0\extension_method.dll
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\obj\Debug\net6.0\refint\extension_method.dll
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\obj\Debug\net6.0\extension_method.pdb
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\obj\Debug\net6.0\extension_method.genruntimeconfig.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\extension_method\obj\Debug\net6.0\ref\extension_method.dll

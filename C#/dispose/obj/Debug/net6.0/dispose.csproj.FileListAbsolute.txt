@@ -1,0 +1,15 @@
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\bin\Debug\net6.0\dispose.exe
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\bin\Debug\net6.0\dispose.deps.json
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\bin\Debug\net6.0\dispose.runtimeconfig.json
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\bin\Debug\net6.0\dispose.dll
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\bin\Debug\net6.0\dispose.pdb
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\obj\Debug\net6.0\dispose.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\obj\Debug\net6.0\dispose.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\obj\Debug\net6.0\dispose.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\obj\Debug\net6.0\dispose.AssemblyInfo.cs
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\obj\Debug\net6.0\dispose.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\obj\Debug\net6.0\dispose.dll
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\obj\Debug\net6.0\refint\dispose.dll
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\obj\Debug\net6.0\dispose.pdb
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\obj\Debug\net6.0\dispose.genruntimeconfig.cache
+C:\Users\Admin\Desktop\Git_Repos\C#\dispose\obj\Debug\net6.0\ref\dispose.dll

@@ -1,0 +1,265 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <button type="button" onclick="display()">Display</button>
+</head>
+<body>
+    <script>
+        //1.validate the name of customer
+        let customerName;
+        let count, len;
+        let check;
+        customerName = prompt("1.Customer Name: ");
+        customerName = customerName.trim().toLowerCase();
+        len = customerName.length;
+        let newName = ' ';
+        for(let i=0;i<len;++i){
+            if(customerName.charAt(i) === ' ' && customerName.charAt(i + 1) === ' '){
+                continue;
+            }
+            if(i == 0 || customerName.charAt(i - 1) == ' '){
+                newName += customerName.charAt(i).toUpperCase();
+                continue;
+            }
+            newName += customerName.charAt(i);
+        }
+        alert("1.Customer Name: " + newName);
+
+        //2.validate the ID Card of customer
+        //must have format: XXXXXXXX, X is a positive integer, have 8 digits
+        //Vậy NaN là các giá trị số không xác định nhưng nó vẫn là số nên NaN thuộc kiểu number.
+        let customerID;
+
+        do{
+            customerID = prompt('2.Customer ID: ');
+            len = customerID.length;
+            count = len;
+            check = true;
+            if(len != 8){
+                alert("Must be 8 characters!");
+                check = false;
+            }
+            if(check == true){
+                //enough 8 digits
+                let num;
+                for(let i=0;i<len;++i){
+                    num = parseInt(customerID.substring(i,i+1));
+                    if(Number.isNaN(num)) count--;
+                }
+                if(count != 8){
+                    alert("Invalid format of ID, please try again!!!");
+                }
+            }
+
+        }while(check == false || count != 8);
+        alert("2.Customer ID: " + customerID);
+        //3.validate the birthday of customer as format DD/MM/YYYY
+        let customerBirthday;
+        do{
+            customerBirthday = prompt("3.Customer DOB: ");
+            len = customerBirthday.length;
+            count = len;
+            check = true;
+            if(len != 10){
+                alert("Not Enough 10 characters!");
+                check = false;
+            }
+            //
+            if(check == true){
+                if(customerBirthday[2] != '/' || customerBirthday[5] != '/'){
+                    count--;
+                }
+                let dd = parseInt(customerBirthday.substring(0,2));
+                if(dd <= 0 || dd > 31 || Number.isNaN(dd)) count--;
+                //
+                let mm = parseInt(customerBirthday.substring(3,5));
+                if(mm <= 0 || mm > 12 || Number.isNaN(mm)) count--;
+                if(mm == 2 && dd > 29) count--;
+                switch (mm){
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        if(dd > 30) count--;
+                        break;
+                }
+                //
+                let yyyy = parseInt(customerBirthday.substr(6));
+                let currentYear = new Date().getFullYear();
+                if(yyyy >= (currentYear - 18) || yyyy <= (currentYear - 100)) count--;
+                //
+                if(count != 10){
+                    alert("Invalid format of Birthday, please try again!!!" + count);
+                }
+            }
+        }while(check == false || count != 10);
+        alert("3.Customer DOB: " + customerBirthday);
+        //4.validate the email of customer
+        //must have one '.' and one '@'
+        let customerEmail;
+        let cntAt, cntDot;
+        do{
+            customerEmail = prompt('4.Customer Email: ');
+            len = customerEmail.length;
+            cntDot = 0;
+            cntAt = 0;
+            for(let i=0;i<len;++i){
+                if(customerEmail.charAt(i) == '.') cntDot++;
+                if(customerEmail.charAt(i) == '@') cntAt++;
+            }
+            if(!(cntAt == 1 && cntDot >= 1)){
+                alert("Invalid format of email, please try again!!!");
+            }
+        }while(!(cntAt == 1 && cntDot >= 1));
+        alert("4.Customer Email: " + customerEmail);
+        //5.validate the customer address of customer
+        let customerAddress = prompt("5.Customer Address (1.Da Nang/2.Hue/3.Quang Nam/4.Other)" +"\nPlease enter your choice: ");
+        switch (customerAddress){
+            case "1":
+                customerAddress = "Da Nang";
+                break;
+            case "2":
+                customerAddress = "Hue";
+                break;
+            case "3":
+                customerAddress = "Quang Nam";
+                break;
+            case "4":
+                customerAddress = "Other";
+                break;
+            default:
+                customerAddress = null;
+                alert("Input is invalid");
+        }
+        alert("5.Customer Address: "+ customerAddress);
+        //6.validate the customer type of customer
+        let customerType = prompt("6.Customer Type (1.Diamond/2.Platinum/3.Gold/4.Silver/5.Member)" +"\nPlease enter your choice: ");
+        switch (customerType){
+            case "1":
+                customerType = "Diamond";
+                break;
+            case "2":
+                customerType = "Platinum";
+                break;
+            case "3":
+                customerType = "Gold";
+                break;
+            case "4":
+                customerType = "Silver";
+                break;
+            case "5":
+                customerType = 'Member';
+                break;
+            default:
+                customerType = null;
+                alert("Input is invalid");
+        }
+        alert("6.Customer Type: " + customerType);
+        //7.validate the discount
+        let discount;
+        do{
+            discount = prompt("7.Discount (%): ");
+            discount = parseFloat(discount);
+            if(discount <= 0 || !Number.isInteger(discount))
+            {
+                alert("Input must be an integer and positive number!!!");
+            }
+        }while(discount <= 0 || !Number.isInteger(discount));
+        alert("7.Discount (%): " + discount);
+        //8.validate the included people
+        let includedPeople;
+        do{
+            includedPeople = prompt("8.Quantity staying with the customer: ");
+            includedPeople = parseFloat(includedPeople);
+            if(includedPeople <= 0 || !Number.isInteger(includedPeople))
+            {
+                alert("Input must be an integer and positive number!!!");
+            }
+        }while(includedPeople <= 0 || !Number.isInteger(includedPeople));
+        alert("8.Quantity staying with the customer: " + includedPeople);
+        //9.validate the rent days
+        let rentDays;
+        do{
+            rentDays = prompt("9.Rent Days: ");
+            rentDays = parseFloat(rentDays);
+            if(rentDays <= 0 || !Number.isInteger(rentDays))
+            {
+                alert("Input must be an integer and positive number!!!");
+            }
+        }while(rentDays <= 0 || !Number.isInteger(rentDays));
+        alert("9.Rent Days: " +  rentDays);
+        // 10.validate service type
+        let serviceType = prompt("10.Service Type (1.Villa/2.House/3.Room)" + "\nPlease enter your choice: ");
+        switch (serviceType) {
+            case "1":
+                serviceType = "Villa";
+                break;
+            case "2":
+                serviceType = "House";
+                break;
+            case "3":
+                serviceType = "Room";
+                break;
+            default:
+                serviceType = null;
+                alert("Input is invalid");
+        }
+        alert("10.Service Type: " + serviceType)
+        // 11.Validate room class
+        let serviceRoom = prompt("11.Service Room (1.Vip/2.Business/3.Normal)" + "\nPlease enter your choice: ");
+        switch (serviceRoom) {
+            case "1":
+                serviceRoom = 'Vip';
+                break;
+            case "2":
+                serviceRoom = 'Business';
+                break;
+            case "3":
+                serviceRoom = 'Normal';
+                break;
+            default:
+                serviceRoom = null;
+                alert("Input is invalid");
+        }
+        alert("11.Service Room: " + serviceRoom);
+
+        let villa = 500;
+        let house = 300;
+        let room = 100;
+        let price = 0;
+        let totalAmount = 0;
+        // Calculate totalAmount based on discount and service type
+        if(serviceType == 'Villa'){
+            price = villa;
+        } else if(serviceType == 'House'){
+            price = house;
+        } else if(serviceType == 'Room'){
+            price = room;
+        }
+        totalAmount = price * rentDays * (1 - discount / 100);
+        //
+        function display(){
+
+            alert(">>--CUSTOMER INFORMATION--<<" + "\n" +
+                "1.Customer Name: " + newName + "\n" +
+                "2.Customer ID: " + customerID +"\n" +
+                "3.Customer DOB: " + customerBirthday + "\n" +
+                "4.Customer Email: " + customerEmail + "\n" +
+                "5.Customer Address: " + customerAddress + "\n" +
+                "6.Customer Type: " + customerType + "\n" +
+                "7.Discount (%): " + discount + "\n" +
+                "8.Quantity staying with the customer: " + includedPeople + "\n" +
+                "9.Rent Days: " + rentDays + "\n" +
+                "10.Service Type: " + serviceType + "\n" +
+                "11.Accommodation Type: " + serviceRoom + "\n" +
+                "12.Price before Discount ($/day): " + price + "\n" +
+                "TOTAL AMOUNT: " + "$." + totalAmount + "\n"
+            );
+        }
+        
+    </script>
+</body>
+</html>

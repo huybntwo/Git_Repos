@@ -1,0 +1,40 @@
+/* h1{
+    color:orange;
+    background-color: black;
+    font-size: 50px;
+    text-decoration: line-through;
+    font-family: Arial;
+    text-align: center;
+}
+p{
+    color:crimson;
+    text-align: left;
+    line-height: 20px;
+    letter-spacing: 3px;
+    column-count: 3;
+
+}
+ul{
+    /* border-width: 5px;
+    border-style: dashed;
+    border-color: green; */
+    /* border:5px dotted green;
+    border-bottom: 5px dotted green;
+    border-left: 7px dashed red;
+}
+li{
+    list-style-type: square;
+    text-shadow: 2px 3px lightseagreen;
+} */
+span{
+    /* display: block; */
+    /* display: inline; */
+    display: inline-block;
+    margin:20px;
+    padding:15px;
+}
+div{
+    border:5px dotted goldenrod;
+    margin:30px;
+    padding:20px;
+}

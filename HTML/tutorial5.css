@@ -1,0 +1,55 @@
+
+/* p.error{
+    color:crimson;
+}
+p.success{
+    color:green;
+}
+p.success.feedback{
+    border: 2px dashed black;
+}
+div#content{
+    padding:10px;
+    background-color: black;
+}
+div .error{
+    color:red;
+} */
+/* div .error = div p.error */
+/* a[href="https://thenetninja.co.uk"]{
+    background-color: darkorange;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+} */
+/* * means include */
+/* $ means end with it */
+/* a[href*="thenetninja"]{
+    background-color: darkorange;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+} */
+/* a[href*="thenetninja"] is the regular expression, find all para that include 'thenetninja' */
+
+/* a[href*="google"]{
+    background-color: deeppink;
+    border:2px dashed black;
+} */
+/* a[href$=".com"]{
+    background-color:red;
+    border:2px solid black;
+} */
+/* div will be choose all div element */
+div{
+    color:orange;
+    border:2px solid grey;
+    margin:20px;
+    font-weight: bold;
+}
+/* inherit */
+div p{
+    margin:inherit;
+    border:inherit;
+}
+/* discriptive */

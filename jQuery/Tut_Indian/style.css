@@ -1,0 +1,35 @@
+#img1{
+    width:300px;
+    height: 300px;
+}
+#div1{
+    margin:auto;
+    text-align: center;
+    background-color: cadetblue;
+    border: 2px dotted black;
+    font-size: 30px;
+    width: 200px;
+    height:200px;
+    position: relative;
+}
+#div2{
+    margin:auto;
+    margin-top:10px;
+    text-align: center;
+    background-color: yellow;
+    border: 2px dotted black;
+    font-size: 30px;
+    width: 200px;
+    height:200px;
+    position: relative;
+}
+#div3{
+    margin:auto;
+    text-align: center;
+    background-color: rgb(233, 233, 233);
+    border: 2px dotted black;
+    font-size: 30px;
+    width: 200px;
+    height:200px;
+    position: relative;
+}

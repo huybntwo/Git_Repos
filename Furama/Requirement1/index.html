@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <button type="button" onclick="addNewCustomer()">Add New Customer</button>
+    <button type="button" onclick="displayCustomerInformation()">Diplay Customer Information</button>
+    <script>
+        let customerName = prompt("1.Customer Name: ");
+        let customerID = prompt("2.Customer ID: ");
+        let customerBirthday = prompt("3.Customer Birthday: ");
+        let customerEmail = prompt("4.Customer Email: ");
+        let customerAddress = prompt("5.Customer Address: ");
+        let customerType = prompt("6.Customer Type(Diamond/Platinum/Gold/Silver/Member): ");
+        let discount = prompt("7.Discount(%): ");
+        let includedPeople = prompt("8.Quatity people staying with the customer: ");
+        let rentDays = prompt("9.Rent Days: ");
+        let serviceType = prompt("10.Service Type(Villa/House/Room): ");
+        let serviceRoom = prompt("Accommadation Type(vip/Bussiness/Normal): ")
+        //
+        let villa = 500;
+        let house = 300;
+        let room = 100;
+        let price = 0;
+        let totalAmount = 0;
+        // Calculate totalAmount based on discount and service type
+        if(serviceType === 'villa' || serviceType === 'Villa'){
+            price = villa;
+        } else if(serviceType === 'house' || serviceType === 'House'){
+            price = house;
+        } else if(serviceType === 'room' || serviceType === 'Room'){
+            price = room;
+        }
+        totalAmount = price * rentDays * (1 - discount / 100);
+        //
+        function  displayCustomerInformation(){
+            alert("CUSTOMER INFORMATION" + "\n" +
+                "1.Customer Name: " + customerName + "\n" +
+                "2.Customer ID: " + customerID +"\n" +
+                "3.Customer DOB: " + customerBirthday + "\n" +
+                "4.Customer Email: " + customerEmail + "\n" +
+                "5.Customer Address: " + customerAddress + "\n" +
+                "6.Customer Type: " + customerType + "\n" +
+                "7.Discount (%): " + discount + "\n" +
+                "8.Quantity staying with the customer: " + includedPeople + "\n" +
+                "9.Rent Days: " + rentDays + "\n" +
+                "10.Service Type: " + serviceType + "\n" +
+                "11.Accommodation Type: " + serviceRoom + "\n" +
+                "12.Price before Discount ($/day): " + price + "\n" +
+                "TOTAL AMOUNT: " + "$." + totalAmount + "\n"
+            );
+        }
+    </script>
+    <script>
+        function addNewCustomer(){
+            location.reload();
+        }
+    </script>
+</body>
+</html>

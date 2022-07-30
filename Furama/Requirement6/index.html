@@ -1,0 +1,278 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <link rel="stylesheet" href="style.css">
+    <div id="myDynamicTable"></div>
+    <script>
+
+         //---Create class for CUSTOMER
+        class Customer {
+            constructor (name, IDcard, birthday, email, address, customerType,
+            serviceType, roomClass, discount, rentDays, peopleIncluded) {
+                this.name = name;
+                this.IDcard = IDcard;
+                this.birthday = birthday;
+                this.email = email;
+                this.address = address;
+                this.customerType = customerType;
+                this.serviceType = serviceType;
+                this.roomClass = roomClass;
+                this.discount = discount;
+                this.rentDays = rentDays;
+                this.peopleIncluded = peopleIncluded;
+            }
+            setName(name){
+                this.name = name;
+            }
+            getName(){
+                return this.name;
+            }
+            setIDcard(IDcard){
+                this.IDcard = IDcard;
+            }
+            getIDcard(){
+                return this.IDcard;
+            }
+            setBirthday(birthday){
+                this.birthday = birthday;
+            }
+            getBirthday(){
+                return this.birthday;
+            }
+            setEmail(email){
+                this.email = email;
+            }
+            getEmail(){
+                return this.email;
+            }
+            setAddress(address){
+                this.address = address;
+            }
+            getAddress(){
+                return this.address;
+            }
+            setCustomerType(customerType){
+                this.customerType = customerType;
+            }
+            getCustomerType(){
+                return this.customerType;
+            }
+            setServiceType(serviceType){
+                this.serviceType = serviceType;
+            }
+            getServiceType(){
+                return this.serviceType;
+            }
+            setRoomClass(roomClass){
+                this.roomClass = roomClass;
+            }
+            getRoomClass(){
+                return this.roomClass;
+            }
+            setDiscount(discount){
+                this.discount = discount;
+            }
+            getDiscount(){
+                return this.discount;
+            }
+            setRentDays(rentDays){
+                this.rentDays = rentDays;
+            }
+            getRentDays(){
+                return this.rentDays;
+            }
+            setPeopleIncluded(peopleIncluded){
+                this.peopleIncluded = peopleIncluded;
+            }
+            getPeopleIncluded(){
+                return this.peopleIncluded;
+            }
+            //method
+            setUnitPrice(){
+                switch (this.serviceType){
+                    case 'Villa':
+                        this.unitPrice = 500;
+                        break;
+                    case 'House':
+                        this.unitPrice = 300;
+                        break;
+                    case 'Room':
+                        this.unitPrice = 100;
+                        break;
+                    default:
+                        this.unitPrice = 0;
+                        break;
+                }
+            }
+            getUnitPrice(){
+                return this.unitPrice;
+            }
+            setTotalAmount(){
+                this.totalAmount = this.getUnitPrice() * this.getRentDays() * (1 - this.getDiscount()/100);
+            }
+            getTotalAmount(){
+                return this.totalAmount;
+            }
+
+        }
+        //---End of class Customer{}
+        let customersList = [];
+        let customer1 = new Customer('Chuong Hoang', '12345678', '20/04/1988','chuong@hoang.com', 'Da Nang', 'Platinum',
+        'House', 'Business', 15, 10, 3);
+        let customer2 = new Customer('Hoang Kim','67492749', '20/04/1988','chuong@hoang.com', 'Hue', 'Diamond',
+            'Room', 'Vip', 12, 6, 4);
+        let customer3 = new Customer('Van Chuong','63180826', '20/04/1988','chuong@hoang.com', 'Quang Tri', 'Gold',
+            'Villa', 'Normal', 10, 8, 2);
+        let customer4 = new Customer('Van Chuong','63180826', '20/04/1988','chuong@hoang.com', 'Quang Tri', 'Gold',
+            'Villa', 'Normal', 10, 8, 2);
+        customer1.setUnitPrice();
+        customer1.setTotalAmount();
+        customersList.push(customer1);
+        //
+        customer2.setUnitPrice();
+        customer2.setTotalAmount();
+        customersList.push(customer2);
+        //
+        customer3.setUnitPrice();
+        customer3.setTotalAmount();
+        customersList.push(customer3);
+        //
+        customer4.setUnitPrice();
+        customer4.setTotalAmount();
+        customersList.push(customer4);
+
+        var headerContentList = ['Customer Name','Customer ID','Customer DOB','Customer Email','Customer Address','Customer Type','Service Type','Accommodation Type','Discount(%)','Rent Days','IncludedPeople','Unit Price', 'Total Amount']
+        var col = headerContentList.length;
+        var row = customersList.length;
+        var listCustomer = [];
+        function transferObjectToTable(){
+            listCustomer = [];
+            for(let i = 0; i<row;++i){
+                var newCustomer = [];
+
+                newCustomer[0] = customersList[i].getName();
+                newCustomer[1] = customersList[i].getIDcard();
+                newCustomer[2] = customersList[i].getBirthday();
+                newCustomer[3] = customersList[i].getEmail();
+                newCustomer[4] = customersList[i].getAddress();
+                newCustomer[5] = customersList[i].getCustomerType();
+                newCustomer[6] = customersList[i].getServiceType();
+                newCustomer[7] = customersList[i].getRoomClass();
+                newCustomer[8] = customersList[i].getDiscount();
+                newCustomer[9] = customersList[i].getRentDays();
+                newCustomer[10] = customersList[i].getPeopleIncluded();
+                newCustomer[11] = customersList[i].getUnitPrice();
+                newCustomer[12] = customersList[i].getTotalAmount();
+                listCustomer.push(newCustomer);
+
+            }
+        }
+        transferObjectToTable();
+        function createTable(row,col,headerContentList, listCustomer) {
+            
+            var table = document.createElement('table');
+            table.createCaption().innerHTML = "<b>CUSTOMER LIST</b>";
+            table.style.border = '1px solid black';
+            table.style.borderCollapse = 'collapse';
+            var tr = document.createElement('tr'); // Header row
+            for (let j = 0; j < col + 1; j++) {
+
+                var th = document.createElement('th'); //column
+                var text;
+                if(j == 0){
+                    text = document.createTextNode("No."); //cell
+                }else{
+                    text = document.createTextNode(headerContentList[j-1]); //cell
+                }
+                th.appendChild(text);
+                th.style.textAlign = 'center';
+                th.style.border = '1px solid red';
+                th.style.width = '20px';
+                tr.appendChild(th);
+                
+            }
+
+            table.appendChild(tr);
+            for (let i = 0; i < row; i++) {
+
+                var tr = document.createElement('tr'); // row
+                for (let j = 0; j < col + 1; j++) {
+                    var td = document.createElement('td'), rIndex, cIndex; //column
+                    var text;
+                    if(j == 0){
+                        text = document.createTextNode(i); //cell
+                    }else{
+                        text = document.createTextNode(listCustomer[i][j-1]); //cell
+                    }
+                    td.appendChild(text);
+                    td.style.textAlign = 'center';
+                    //td.style.width = '20px';
+                    td.ondblclick = function(){
+                        rIndex = this.parentElement.rowIndex;
+                        cIndex = this.cellIndex;
+                        //console.log(cIndex);
+                        edit(rIndex, cIndex);
+                    }
+                    //td.contentEditable = true;
+                    td.style.border = '1px solid black';
+                    tr.appendChild(td);
+                    
+                }
+
+                table.appendChild(tr);
+            }
+            document.getElementById('myDynamicTable').appendChild(table);
+        }
+
+        
+        function edit(rIndex, cIndex){;
+            //alert("oke");
+            if(cIndex == 1){
+                let ans = prompt('change name of ' + customersList[rIndex - 1].getName());
+                if(ans == null){
+                    alert("You do not edit anything!");
+                } else{
+                    customersList[rIndex - 1].setName(ans);
+                }
+                
+            } else if(cIndex == 2){
+                customersList[rIndex - 1].setIDcard(prompt('change IDcard of ' + customersList[rIndex - 1].getName()));
+            } else if(cIndex == 3){
+                customersList[rIndex - 1].setBirthday(prompt('change birthday of ' + customersList[rIndex - 1].getName()));
+            } else if(cIndex == 4){
+                customersList[rIndex - 1].setEmail(prompt('change email of ' + customersList[rIndex - 1].getName()));   
+            } else if(cIndex == 5){
+                customersList[rIndex - 1].setAddress(prompt('change address of ' + customersList[rIndex - 1].getName()));
+            } else if(cIndex == 6){
+                customersList[rIndex - 1].setCustomerType(prompt('change customer-type of ' + customersList[rIndex - 1].getName()));
+            } else if(cIndex == 7){
+                let serviceType = prompt('change service-type of ' + customersList[rIndex - 1].getName());
+                customersList[rIndex - 1].setServiceType(serviceType);
+                customersList[rIndex - 1].setUnitPrice();
+                customersList[rIndex - 1].setTotalAmount();
+            } else if(cIndex == 8){
+                customersList[rIndex - 1].setRoomClass(prompt('change room-class of ' + customersList[rIndex - 1].getName()));
+            } else if(cIndex == 9){
+                customersList[rIndex - 1].setDiscount(parseInt(prompt('change discount of ' + customersList[rIndex - 1].getName())));
+                customersList[rIndex - 1].setTotalAmount();
+            } else if(cIndex == 10){
+                customersList[rIndex - 1].setRentDays(parseInt(prompt('change rent-days of ' + customersList[rIndex - 1].getName())));
+                customersList[rIndex - 1].setTotalAmount();  
+            } else if(cIndex == 11){
+                customersList[rIndex - 1].setPeopleIncluded(parseInt(prompt('People included number of ' + customersList[rIndex - 1].getName())));
+            }
+
+            transferObjectToTable();
+            const ele = document.getElementById('myDynamicTable');
+            ele.removeChild(ele.lastElementChild);
+            createTable(row, col, headerContentList, listCustomer);
+            
+        }
+        createTable(row, col, headerContentList, listCustomer);
+    </script>
+</body>
+</html>

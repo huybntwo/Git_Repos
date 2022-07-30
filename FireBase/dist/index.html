@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/src/styles.css"> -->
+    <title>Firebase 9</title>
+</head>
+<body>
+    <h1>Cloud Cafe</h1>
+    <form class="add">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+        <label for="city">City:</label>
+        <input type="text" name="city" required>
+
+        <button>add a new user</button>
+    </form>
+    <form class="delete">
+        <label for="id">Document id:</label>
+        <input type="text" name="id" required>
+
+        <button>delete a user</button>
+    </form>
+    <form class="update">
+        <label for="id">Update</label>
+        <input type="text" name="id" required>
+
+        <button>update a user</button>
+    </form>
+    <h2>Firebase Auth</h2>
+    <form class="signup">
+        <label for="email">Email:</label>
+        <input type="text" name="email">
+        <label for="password">Password:</label>
+        <input type="text" name="password">
+
+        <button>signup</button>
+    </form>
+    <form class="login">
+        <label for="email">Email:</label>
+        <input type="email" name="email">
+        <label for="password">Password:</label>
+        <input type="password" name="password">
+
+        <button>login</button>
+    </form>
+
+    <button class="logout">logout</button>
+    <h2>Unsubcribing</h2>
+    <button class="unsub">unsubcribe from db/auth changes</button>
+
+    <!-- <div class="content">
+        <form id="add-cafe-form">
+            <input type="text" name="name" placeholder="name cafe">
+            <input type="text" name="name" placeholder="city cafe">
+            <button>Add Cafe</button>
+        </form>
+
+        <ul id="cafe-list"></ul>
+
+    </div> -->
+
+    <!-- <script src="/src/index.js"></script> -->
+    <script src="bundle.js"></script>
+</body>
+</html>

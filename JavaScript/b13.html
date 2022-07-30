@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <p>some text</p>
+        <p>some text</p>
+        <p>some text</p>
+        <p>some text</p>
+        <p>some text</p>
+        <p>some text</p>
+        <p>some text</p>
+        <p>some other text</p>
+    </div>
+    //
+    <!-- <p class="z">Your </p>
+    <p class="z">Destiny </p>
+    <p class="z">is </p>
+    <p class="z">stayed </p>
+    <p class="z">in </p>
+    <p class="z">your </p>
+    <p class="z">palm </p> -->
+    //
+    <p id="huybn2">ex</p>
+    <script>
+     var a = document.getElementById("demo");
+     //a.innerHTML = "Hello World!!";
+    //  var atr1 = a.childNodes;
+    //  for(var x=0;x<atr1.length;x++) 
+    //  {
+    //    atr1[x].innerHTML = "new text" + x;
+    //  }
+     var txt = a.firstChild.nodeName;
+    document.getElementById("huybn2").innerHTML = txt;
+     var atr3 = a.lastChild;
+     var atr4 = a.hasChildNodes;
+     if(atr4 == true)
+     {
+        console.log("Yes");
+     }
+     else
+     {
+        console.log("No");
+     }
+     var atr5 = a.nextSibling;
+     var atr6 = a.previousSibling;
+     var atr7 = a.parentNode;
+
+     //
+  
+        
+    // var arr = document.getElementsByClassName("z");
+    // for(var i = 0;i<arr.length;++i)
+    // {
+    //     arr[i].innerHTML = "Hello Huybn2!!!";
+    // }
+    </script>
+</body>
+</html>
