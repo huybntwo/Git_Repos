@@ -35,9 +35,13 @@ $('document').ready(() => {
     //     $('#img1').css({'width':'100px','height':'100px'});
     // })
     //
-    $('#img1').hover(() => {
-        $('#img1').css({'width':'500px', 'height':'500px'});
-    }, () => {
-        $('#img1').css({'width':'100px','height':'100px'});
-    })
+    // $('#img1').hover(() => {
+    //     $('#img1').css({'width':'500px', 'height':'500px'});
+    // }, () => {
+    //     $('#img1').css({'width':'100px','height':'100px'});
+    // })
+    // $('#date').datepicker();
+    // $('#date').click(()=>{
+    //     alert('hello');
+    // })
 })

@@ -1,4 +1,4 @@
-$('document').ready(() => {
+$(document).ready(() => {
     // $('#btn1').click(() => {
     //     $('#img1').hide(2000);
     // })
