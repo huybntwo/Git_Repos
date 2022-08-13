@@ -99,29 +99,29 @@ initializeApp(firebaseConfig)
 const db = getFirestore()
 const auth = getAuth();
 // collection ref
-const colRef = collection(db, 'cafes')
+const ref = collection(db, 'obs');
 //queries, replace q to colRef in onSnapshot()
 //const q = query(colRef, where("name","==","Huybn2"), orderBy('createAt','asc'));
-const q = query(colRef, orderBy('createAt','asc'));
+// const q = query(colRef, orderBy('createAt','asc'));
 
 // get real time collection data\
 //will recall anytime have change(addUser, deleteUser)/
 //response immediately to your website
-const unsubCol = onSnapshot(colRef, (snapshot) => {
-    let cafes = []
-    snapshot.docs.forEach(doc => {
-      cafes.push({ ...doc.data(), id: doc.id });
-      //renderCafe(doc);
-    })
-    console.log(cafes)
-})
+// const unsubCol = onSnapshot(ref, (snapshot) => {
+//     let residents = []
+//     snapshot.docs.forEach(doc => {
+//       residents.push({ ...doc.data(), id: doc.id });
+//       //renderCafe(doc);
+//     })
+//     console.log(residents)
+// })
 
 //adding documents
 const addUSer = document.querySelector('.add')
 addUSer.addEventListener('submit', (e) => {
   e.preventDefault()
 
-  addDoc(colRef, {
+  addDoc(ref, {
     name: addUSer.name.value,
     city: addUSer.city.value,
     //calculate the interval, created this doc
@@ -133,100 +133,101 @@ addUSer.addEventListener('submit', (e) => {
   })
 })
 
-//deleting documents
-const deleteUser =  document.querySelector('.delete');
-deleteUser.addEventListener('submit',e => {
-  e.preventDefault()
-  //get the id of doc from input form and validate to doc in firebase
-  const docRef = doc(db,'cafes', deleteUser.id.value)
-  //delete doc in firebase
-  deleteDoc(docRef)
-  .then(() => {
-    //reset form
-    deleteUser.reset();
-  })
-})
-//fetching a single doc by using getDoc
-const docRef = doc(db, 'cafes', 'FXa2PbvFKcgUA10MeENI');
-getDoc(docRef)
-.then(doc => {
-  console.log(doc.data(), doc.id)
-})
+// //deleting documents
+// const deleteUser =  document.querySelector('.delete');
+// deleteUser.addEventListener('submit',e => {
+//   e.preventDefault()
+//   //get the id of doc from input form and validate to doc in firebase
+//   const docRef = doc(db,'residents', deleteUser.id.value)
+//   //delete doc in firebase
+//   deleteDoc(docRef)
+//   .then(() => {
+//     //reset formll
+//     deleteUser.reset();
+//   })
+// })
+// //fetching a single doc by using getDoc
+// const docRef = doc(db, 'residents', 'FXa2PbvFKcgUA10MeENI');
+// getDoc(docRef)
+// .then(doc => {
+//   console.log(doc.data(), doc.id)
+// })
 
-const unsubDoc = onSnapshot(docRef, (doc) => {
-  console.log(doc.data(), doc.id)
-})
-//updating documents
-const updateUser = document.querySelector('.update');
-updateUser.addEventListener('submit',e => {
-  e.preventDefault()
-  //get the id of doc from input form and validate to doc in firebase
-  const docRef = doc(db,'cafes', updateUser.id.value)
-  updateDoc(docRef,{
-    name:'name updated'
+// const unsubDoc = onSnapshot(docRef, (doc) => {
+//   console.log(doc.data(), doc.id)
+// })
+// //updating documents
+// const updateUser = document.querySelector('.update');
+// updateUser.addEventListener('submit',e => {
+//   e.preventDefault()
+//   //get the id of doc from input form and validate to doc in firebase
+//   const docRef = doc(db,'residents', updateUser.id.value)
+//   updateDoc(docRef,{
+//     name:'name updated'
 
-  })
-  .then(() => {
-    updateUser.reset();
-  })
-})
+//   })
+//   .then(() => {
+//     updateUser.reset();
+//   })
+// })
 
-//sign up
-const signupUser = document.querySelector('.signup');
-signupUser.addEventListener('submit',e => {
-  e.preventDefault()
+// //sign up
+// const signupUser = document.querySelector('.signup');
+// signupUser.addEventListener('submit',e => {
+//   e.preventDefault()
 
-  const email = signupUser.email.value
-  const password = signupUser.password.value
+//   const email = signupUser.email.value
+//   const password = signupUser.password.value
 
-  createUserWithEmailAndPassword(auth, email, password)
-  .then((cred) => {
-    console.log('user created: ', cred.user)
-    signupUser.reset()
-  })
-  .catch((err) => {
-    console.log(err.message)
-  })
+//   createUserWithEmailAndPassword(auth, email, password)
+//   .then((cred) => {
+//     console.log('user created: ', cred.user)
+//     signupUser.reset()
+//   })
+//   .catch((err) => {
+//     console.log(err.message)
+//   })
 
-})
-//login
-const loginUser = document.querySelector('.login');
-loginUser.addEventListener('submit', e => {
-  e.preventDefault();
+// })
+// //login
+// const loginUser = document.querySelector('.login');
+// loginUser.addEventListener('submit', e => {
+//   e.preventDefault();
 
-  const email = loginUser.email.value
-  const password = loginUser.password.value
+//   const email = loginUser.email.value
+//   const password = loginUser.password.value
 
-  signInWithEmailAndPassword(auth, email, password)
-  .then((cred) => {
-    //console.log('user log in: ', cred.user)
-    //loginUser.reset()
-  })
-  .catch((err) => {
-    console.log(err.message)
-  })
-})
-//logout
-const logoutUser = document.querySelector('.logout');
-logoutUser.addEventListener('click', ()=> {
-  signOut(auth)
-  .then(() => {
-    //console.log('the user signed out')
-  })
-  .catch((err) => {
-    console.log(err.message)
-  })
+//   signInWithEmailAndPassword(auth, email, password)
+//   .then((cred) => {
+//     //console.log('user log in: ', cred.user)
+//     //loginUser.reset()
+//   })
+//   .catch((err) => {
+//     console.log(err.message)
+//   })
+// })
+// //logout
+// const logoutUser = document.querySelector('.logout');
+// logoutUser.addEventListener('click', ()=> {
+//   signOut(auth)
+//   .then(() => {
+//     //console.log('the user signed out')
+//   })
+//   .catch((err) => {
+//     console.log(err.message)
+//   })
 
-})
-//subscribing to auth changes(login logout, signup)
-const unsubAuth = onAuthStateChanged(auth, (user) => {
-  console.log('user status changes: ', user);
-})
-//unsubcribe from changes (auth & db)
-const unsubUser = document.querySelector('.unsub');
-unsubUser.addEventListener('click', () => {
-  console.log('unsubcribing')
-  unsubCol();
-  unsubDoc();
-  unsubAuth();
-})
+// })
+// //subscribing to auth changes(login logout, signup)
+// const unsubAuth = onAuthStateChanged(auth, (user) => {
+//   console.log('user status changes: ', user);
+// })
+// //unsubcribe from changes (auth & db)
+// const unsubUser = document.querySelector('.unsub');
+// unsubUser.addEventListener('click', () => {
+//   console.log('unsubcribing')
+//   unsubCol();
+//   unsubDoc();
+//   unsubAuth();
+// })
+

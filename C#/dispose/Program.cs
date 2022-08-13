@@ -15,7 +15,7 @@ namespace CS023_Dispose {
                 Console.WriteLine ("Do something ...");
             }
             //Sử dụng với using, hết lệnh Dispose sẽ thi hành và mọi tài nguyên được giải phóng
-            using (WriteData writeData = new WriteData("filename.txt")) {
+            using (WriteData wrData = new WriteData("filename.txt")) {
                 Console.WriteLine ("Free filename.txt!!!");
             }
             //Nếu không dùng using, thì chủ động gọi Dispose, tài nguyên cũng giải phóng đúng yêu cầu.
