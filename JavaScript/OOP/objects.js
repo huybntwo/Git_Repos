@@ -692,43 +692,43 @@
 // mySet.add(5);
 // mySet.add(6);
 
-//this function will return xmlHttp object
-function httpGetAsync(theUrl, resolve){
-    //creates an XMLHttpRequest object:(đối tượng này sẽ có các thuộc tính nhưng đều chưa có giá trị)
-    var xmlHttp = new XMLHttpRequest();
-    //The onreadystatechange property specifies a function to be executed every time the status of the XMLHttpRequest object changes:
-    xmlHttp.onreadystatechange = function(){
-        //resolve(xmlHttp) sẽ lấy các giá trị gán vào các thuộc tính
-        //resolve(xmlHttp) là function của Promise nên sẽ đợi 2 hàm open và send bên dưới thực hiện xong để lấy được các giá trị.
-        if(xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve(xmlHttp);
-    }
-    xmlHttp.open("GET", theUrl, true);//true for async
-    xmlHttp.send();
-}
+// //this function will return xmlHttp object
+// function httpGetAsync(theUrl, resolve){
+//     //creates an XMLHttpRequest object:(đối tượng này sẽ có các thuộc tính nhưng đều chưa có giá trị)
+//     var xmlHttp = new XMLHttpRequest();
+//     //The onreadystatechange property specifies a function to be executed every time the status of the XMLHttpRequest object changes:
+//     xmlHttp.onreadystatechange = function(){
+//         //resolve(xmlHttp) sẽ lấy các giá trị gán vào các thuộc tính
+//         //resolve(xmlHttp) là function của Promise nên sẽ đợi 2 hàm open và send bên dưới thực hiện xong để lấy được các giá trị.
+//         if(xmlHttp.readyState == 4 && xmlHttp.status == 200) resolve(xmlHttp);
+//     }
+//     xmlHttp.open("GET", theUrl, true);//true for async
+//     xmlHttp.send();
+// }
 
-const currentPromise1 = new Promise((resolve, reject) => {
-    httpGetAsync('https://picsum.photos/200/300', resolve)
-});
+// const currentPromise1 = new Promise((resolve, reject) => {
+//     httpGetAsync('https://picsum.photos/200/300', resolve)
+// });
 
-const currentPromise2 = new Promise((resolve, reject) => {
-    httpGetAsync('https://picsum.photos/200/300', resolve)
-});
+// const currentPromise2 = new Promise((resolve, reject) => {
+//     httpGetAsync('https://picsum.photos/200/300', resolve)
+// });
 
-const currentPromise3 = new Promise((resolve, reject) => {
-    httpGetAsync('https://picsum.photos/200/300', resolve)
-});
+// const currentPromise3 = new Promise((resolve, reject) => {
+//     httpGetAsync('https://picsum.photos/200/300', resolve)
+// });
 
-const executeAsync = async () => {
-    const data1 = await currentPromise1;
-    console.log(data1)
-    document.getElementById('img_1').setAttribute('src',data1.responseURL);
-    const data2 = await currentPromise2;
-    document.getElementById('img_2').setAttribute('src',data2.responseURL);
-    const data3 = await currentPromise3;
-    document.getElementById('img_3').setAttribute('src',data3.responseURL);
-}
+// const executeAsync = async () => {
+//     const data1 = await currentPromise1;
+//     console.log(data1)
+//     document.getElementById('img_1').setAttribute('src',data1.responseURL);
+//     const data2 = await currentPromise2;
+//     document.getElementById('img_2').setAttribute('src',data2.responseURL);
+//     const data3 = await currentPromise3;
+//     document.getElementById('img_3').setAttribute('src',data3.responseURL);
+// }
 
-executeAsync()
+// executeAsync()
 
 
 
@@ -761,3 +761,28 @@ executeAsync()
 //         })
 //     })
 // })
+
+
+const persons = [
+    {firstname : "Malcom", lastname: "Reynolds"},
+    {firstname : "Kaylee", lastname: "Frye"},
+    {firstname : "Jayne", lastname: "Cobb"}
+  ];
+
+  const persons_new = persons.map(per => {
+    return{
+        ...per,
+        firstname: `${per.firstname}Huybn2`
+    }
+  })
+
+  console.log(persons_new)
+
+
+  //acc is accumulate, reduce() function will override the acc argument after each loop through cur argument
+  const numbers = [1,2,4,5,2,6,8];
+  const total = numbers.reduce((acc,cur) => {
+    return acc + cur;
+  }, 0)
+
+  console.log({total})
